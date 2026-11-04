@@ -2,6 +2,9 @@
 
 ## Next
 
+## Version 9.2.18 (2026-11-02)
+* Add support for new Station Logo handling from schedules direct
+
 ## Version 9.2.17 (2026-08-04)
 * Fixes to better match SD API for error handling
 * Fix for running EPG maintenance at specified time
