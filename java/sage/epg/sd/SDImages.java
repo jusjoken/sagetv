@@ -408,14 +408,15 @@ public class SDImages
     return returnValue;
   }
 
+  // Current logo servers; legacy storage prefixes above remain for decoding saved URLs.
+  private static final String LOGO_CDN_HOST = "logos.json.schedulesdirect.org";
+  private static final String LOGO_S3_HOST = "schedulesdirect-api20141201-logos.s3.dualstack.us-east-1.amazonaws.com";
+
   public static boolean isSDLogoURL(java.net.URL url)
   {
-    return url != null && ("http".equals(url.getProtocol()) || "https".equals(url.getProtocol())) &&
-      ("logos.json.schedulesdirect.org".equalsIgnoreCase(url.getHost()) ||
-        ("s3.amazonaws.com".equalsIgnoreCase(url.getHost()) &&
-          url.getPath().startsWith("/schedulesdirect/assets/stationLogos/")) ||
-        ("schedulesdirect-api20141201.s3.us-east-1.amazonaws.com".equalsIgnoreCase(url.getHost()) &&
-          url.getPath().startsWith("/assets/stationLogos/")));
+    return url != null && "https".equals(url.getProtocol()) &&
+      (LOGO_CDN_HOST.equalsIgnoreCase(url.getHost()) || LOGO_S3_HOST.equalsIgnoreCase(url.getHost())) &&
+      url.getPath().startsWith("/stationLogos/");
   }
 
   public static String decodeLogoURL(byte[] url, int logoID)

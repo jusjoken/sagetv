@@ -121,6 +121,7 @@ public class SDImagesTest extends DeserializeTest
     String[] urls = {
       "https://logos.json.schedulesdirect.org/stationLogos/s28711_dark_360w_270h.png?v=c67e14989b4756c3c672",
       "https://logos.json.schedulesdirect.org/stationLogos/s28711_dark_360w_270h.png?v=123&other=value.png",
+      "https://schedulesdirect-api20141201-logos.s3.dualstack.us-east-1.amazonaws.com/stationLogos/s28711_dark_360w_270h.png",
       "https://s3.amazonaws.com/schedulesdirect/assets/stationLogos/s28711_h3_aa.png?v=c67e14989b4756c3c672",
       "https://s3.amazonaws.com/schedulesdirect/assets/stationLogos/s28711_h3_aa.png",
       "https://s3.amazonaws.com/schedulesdirect/assets/stationLogos/custom.png",
@@ -145,14 +146,18 @@ public class SDImagesTest extends DeserializeTest
   {
     String[] logoURLs = {
       "https://logos.json.schedulesdirect.org/stationLogos/s28711_dark_360w_270h.png?v=c67e14989b4756c3c672",
-      "http://LOGOS.JSON.SCHEDULESDIRECT.ORG/stationLogos/s28711.png",
-      "https://s3.amazonaws.com/schedulesdirect/assets/stationLogos/s28711_h3_aa.png",
-      "https://schedulesdirect-api20141201.s3.us-east-1.amazonaws.com/assets/stationLogos/s28711.png"
+      "https://LOGOS.JSON.SCHEDULESDIRECT.ORG/stationLogos/s28711.png",
+      "https://schedulesdirect-api20141201-logos.s3.dualstack.us-east-1.amazonaws.com/stationLogos/s28711_dark_360w_270h.png"
     };
     for (String url : logoURLs)
       assert SDImages.isSDLogoURL(new java.net.URL(url)) : "SD logo not recognized: " + url;
 
     String[] otherURLs = {
+      "http://logos.json.schedulesdirect.org/stationLogos/s28711.png",
+      "https://logos.json.schedulesdirect.org/other/s28711.png",
+      "https://schedulesdirect-api20141201-logos.s3.dualstack.us-east-1.amazonaws.com/other/s28711.png",
+      "https://s3.amazonaws.com/schedulesdirect/assets/stationLogos/s28711_h3_aa.png",
+      "https://schedulesdirect-api20141201.s3.us-east-1.amazonaws.com/assets/stationLogos/s28711.png",
       "https://logos.json.schedulesdirect.org.example.com/stationLogos/s28711.png",
       "https://logos.json.schedulesdirect.org@other.example.com/stationLogos/s28711.png",
       "https://other.example.com/stationLogos/s28711.png",
