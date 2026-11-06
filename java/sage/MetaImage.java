@@ -2460,10 +2460,10 @@ public class MetaImage
     }
     else if (src instanceof URL)
     {
-      // SD image URLs require an authenticated request with a proper User-Agent header.
+      // SD API images require authentication; station logos also need a proper User-Agent.
       // If localCacheFile was not set (loadCacheFile failed), do not fall back to a plain
       // openStream() call which would send Java's default User-Agent to SD's servers.
-      if (src.toString().startsWith(SDSession.URL_VERSIONED))
+      if (src.toString().startsWith(SDSession.URL_VERSIONED) || SDImages.isSDLogoURL((URL) src))
         return null;
       try
       {
